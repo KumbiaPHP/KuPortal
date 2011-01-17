@@ -5,14 +5,22 @@
  * PHP version 5
  * LICENSE
  *
- * This source file is subject to the GNU/GPL that is bundled
- * with this package in the file docs/LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to deivinsontejeda@gmail.com so we can send you a copy immediately.
- *
- * @author Deivinson Tejeda <deivinsontejeda@gmail.com>
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+ * 
+ * @package Seguridad
+ * @license http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE version 3.
+ * @author Henry Stivens Adarme Muñoz <henry.stivens@gmail.com>
  */
 class Menu extends ActiveRecord {
 

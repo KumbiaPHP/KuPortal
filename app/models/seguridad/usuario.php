@@ -1,46 +1,50 @@
 <?php
 
 /**
- * KuPortal - KumbiaPHP Blog
+ * KuPortal - KumbiaPHP Portal
  * PHP version 5
  * LICENSE
  *
- * This source file is subject to the GNU/GPL that is bundled
- * with this package in the file docs/LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to deivinsontejeda@gmail.com so we can send you a copy immediately.
- *
- * @author Henry Stivens Adarme (http://twitter.com/henrystivens)
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+ * 
+ * @package Seguridad
+ * @license http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE version 3.
+ * @author Henry Stivens Adarme Muñoz <henry.stivens@gmail.com>
  */
 class Usuario extends ActiveRecord {
-    
+
     public $logger = true;
 
-    public function initialize() {       
+    public function initialize() {
         //Relaciones
         $this->belongs_to('rol');
-        
+
         //Validaciones
         $this->validates_presence_of('rol_id', 'message: Por favor seleccione un rol');
         $this->validates_email_in('email', 'message: Campo de correo electrónico incorrecto');
-        
+
         //Tamaño
-        $this->validates_length_of('nick', 40, 5,
-                "too_short: El nick debe tener al menos 5 caracteres",
-                "too_long: El nick debe tener maximo 40 caracteres");
-        $this->validates_length_of('nombre', 150, 5,
-                "too_short: El nombre debe tener al menos 5 caracteres",
-                "too_long: El nombre debe tener maximo 150 caracteres");
+        $this->validates_length_of('nick', 40, 5, "too_short: El nick debe tener al menos 5 caracteres", "too_long: El nick debe tener maximo 40 caracteres");
+        $this->validates_length_of('nombre', 150, 5, "too_short: El nombre debe tener al menos 5 caracteres", "too_long: El nombre debe tener maximo 150 caracteres");
     }
 
     public function before_validation_on_create() {
-         $this->estado = '1';
+        $this->estado = '1';
     }
 
     public function before_save() {
-        if (!$this->id) {            
+        if (!$this->id) {
             if ($this->find_first('nick = "' . $this->nick . '"')) {
                 Flash::error('Por favor ingrese otro nick porque este ya existe.');
                 return 'cancel';
@@ -64,9 +68,9 @@ class Usuario extends ActiveRecord {
             if ($usuario) {
                 $usuario->clave = sha1($clave);
                 //TODO: Cambio de clave de reseteo
-                /*$correo = new Correo();
-                $reset_clave = $correo->generarClave(50);
-                $usuario->reset = $reset_clave;*/
+                /* $correo = new Correo();
+                  $reset_clave = $correo->generarClave(50);
+                  $usuario->reset = $reset_clave; */
                 if ($usuario->update()) {
                     return true;
                 } else {
@@ -97,11 +101,11 @@ class Usuario extends ActiveRecord {
         if (!$usuario) {
             $usuario = $this->getUsuarioByNick($email_or_username);
         }
-        if ($usuario) {            
+        if ($usuario) {
             $reset_clave = Misc::generarClave(33);
             //Para el correo
             $host = Config::get('config.kuportal.site_domain');
-            $url = $host.'usuario/cambiar_clave/'."$usuario->email/$reset_clave";
+            $url = $host . 'usuario/cambiar_clave/' . "$usuario->email/$reset_clave";
             $body = "<p>Alguien (probablemente usted) solicitó que le enviemos
                 este mensaje porque usted se ha olvidado de
                 la contraseña de su cuenta.</p>
@@ -118,7 +122,7 @@ class Usuario extends ActiveRecord {
 
             $usuario->reset = $reset_clave;
             if ($usuario->update()) {
-                if (Correo::send($usuario->email, $usuario->nombre, 'Restablecimiento de clave',$body)) {
+                if (Correo::send($usuario->email, $usuario->nombre, 'Restablecimiento de clave', $body)) {
                     return true;
                 } else {
                     return false;

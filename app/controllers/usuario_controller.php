@@ -1,21 +1,33 @@
 <?php
 
 /**
- * Description of usuario_controller.php
- * 18/02/2010 03:40:52 PM
+ * KuPortal - KumbiaPHP Portal
+ * PHP version 5
+ * LICENSE
  *
- * @author
- * @copyright 2010
- * @license Put project's license
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Clase utilizada para cargar y verificar los permisos que tiene un usuario.
+ * 
+ * @license http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE version 3.
+ * @author Henry Stivens Adarme Muñoz <henry.stivens@gmail.com>
  */
 Load::models('seguridad/usuario');
 
 class UsuarioController extends AppController {
 
-    public function before_filter() {
-        /* /$this->submenu = array('admin/usuario/index/activo/1/'=>'Lista activos',
-          'admin/usuario/index/inactivo/1/'=>'Lista inactivos',
-          'admin/usuario/create/'=>'Nuevo'); */
+    public function before_filter() {        
         //View::template('usuario');
     }
 
@@ -75,7 +87,5 @@ class UsuarioController extends AppController {
             return Router::redirect('usuario/mail_reset/');
         }
     }
-
 }
-
 ?>

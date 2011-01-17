@@ -1,17 +1,38 @@
 <?php
 
 /**
+ * KuPortal - KumbiaPHP Portal
+ * PHP version 5
+ * LICENSE
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Controlador para listar, crear, editar y eliminar accesos.
+ * 
+ * @license http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE version 3.
+ * @author Henry Stivens Adarme Muñoz <henry.stivens@gmail.com>
  */
-Load::model('seguridad/rol_recurso');
-Load::model('seguridad/rol');
-Load::model('seguridad/recurso');
-Load::model('seguridad/menu');
+//Carga de modelos necesarios
+Load::models('seguridad/rol_recurso','seguridad/rol','seguridad/recurso','seguridad/menu');
 
 class AccesoController extends AppController {
     
-    public $modulo = 'Accesos';
+    /**
+     * Variable para modificar el titulo.
+     * @var string 
+     */
+    public $titulo = 'Accesos';
 
     public function index() {
         $rol = new Rol();
@@ -20,6 +41,7 @@ class AccesoController extends AppController {
 
     /**
      * Crea un Registro
+     * @return Object RolRecurso  
      */
     public function crear() {
         if (Input::hasPost('rol_recurso')) {
@@ -39,7 +61,9 @@ class AccesoController extends AppController {
     }
 
     /**
-     * Edita un Registro
+     * Edita un acceso.
+     * @param int $id
+     * @return Object RolRecurso 
      */
     public function editar($id) {
 
@@ -60,7 +84,8 @@ class AccesoController extends AppController {
     }
 
     /**
-     * Borra un Registro
+     * Elimina un acceso.
+     * @param int $id
      */
     public function borrar($id) {
         if (!Load::model('rol_recurso')->delete((int) $id)) {
