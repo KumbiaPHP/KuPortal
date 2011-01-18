@@ -4,7 +4,7 @@
 <?php if ($results->items) : ?>
     <table id="hor-minimalist">
         <thead><tr>
-                <th>Id</th>
+                <th>Gravatar</th>
                 <th>Nick</th>
                 <th>Nombre</th>
                 <th>Registrado</th>
@@ -14,7 +14,7 @@
         <tbody>
             <?php foreach ($results->items as $item) : ?>
                 <tr>
-                    <td><?php echo $item->id?></td>
+                    <td><?php echo Html::gravatar($item->email)?></td>
                     <td><?php echo $item->nick?></td>
                     <td><?php echo $item->nombre?></td>
                     <td><?php echo $item->registrado_at?></td>
