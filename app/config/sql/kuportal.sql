@@ -16,6 +16,74 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `articulo`
+--
+
+DROP TABLE IF EXISTS `articulo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `articulo` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `contenido` text NOT NULL,
+  `titulo` varchar(255) NOT NULL,
+  `slug` varchar(200) NOT NULL,
+  `creado_at` datetime NOT NULL,
+  `editado_in` datetime DEFAULT NULL,
+  `usuario_id` bigint(20) NOT NULL,
+  `estado` int(11) NOT NULL DEFAULT '0',
+  `resumen` text,
+  `articulo_categoria_id` int(10) NOT NULL,
+  `fecha_publicacion` datetime DEFAULT NULL,
+  `habilitar_comentarios` tinyint(1) NOT NULL DEFAULT '0',
+  `numero_comentarios` int(11) NOT NULL DEFAULT '0',
+  `numero_de_lecturas` int(11) NOT NULL DEFAULT '0',
+  `me_gusta` int(11) NOT NULL DEFAULT '0',
+  `no_me_gusta` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `slug_UNIQUE` (`slug`),
+  UNIQUE KEY `titulo_UNIQUE` (`titulo`),
+  KEY `fk_articulo_usuario` (`usuario_id`),
+  KEY `fk_articulo_categoria` (`articulo_categoria_id`),
+  CONSTRAINT `fk_articulo_categoria` FOREIGN KEY (`articulo_categoria_id`) REFERENCES `articulo_categoria` (`id`),
+  CONSTRAINT `fk_articulo_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `articulo`
+--
+
+LOCK TABLES `articulo` WRITE;
+/*!40000 ALTER TABLE `articulo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `articulo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `articulo_categoria`
+--
+
+DROP TABLE IF EXISTS `articulo_categoria`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `articulo_categoria` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) NOT NULL,
+  `url` varchar(100) NOT NULL,
+  `estado` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `articulo_categoria`
+--
+
+LOCK TABLES `articulo_categoria` WRITE;
+/*!40000 ALTER TABLE `articulo_categoria` DISABLE KEYS */;
+/*!40000 ALTER TABLE `articulo_categoria` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `menu`
 --
 
@@ -64,7 +132,7 @@ CREATE TABLE `recurso` (
 
 LOCK TABLES `recurso` WRITE;
 /*!40000 ALTER TABLE `recurso` DISABLE KEYS */;
-INSERT INTO `recurso` VALUES (1,'Crear usuario','admin/usuario/crear/'),(2,'Listar usuarios','admin/usuario/index/'),(3,'Editar usuario','admin/usuario/editar/'),(4,'Crear recurso','admin/recurso/crear/'),(5,'Listar recursos','admin/recurso/index/'),(6,'Editar recurso','admin/recurso/editar/'),(7,'Crear rol','admin/rol/crear/'),(8,'Listar roles','admin/rol/index/'),(9,'Editar rol','admin/rol/editar/'),(10,'Crear MenÃº','admin/menu/crear/'),(11,'Listar menÃºs','admin/menu/index/'),(12,'Editar menÃº','admin/menu/editar/'),(13,'Crear acceso','admin/acceso/crear/'),(14,'Listar accesos','admin/acceso/index/'),(15,'Editar acceso','admin/acceso/editar/'),(16,'Inicio admin','admin/index/index/'),(17,'Cambiar clave','admin/usuario/cambiar_clave/');
+INSERT INTO `recurso` VALUES (1,'Crear usuario','admin/usuario/crear/'),(2,'Listar usuarios','admin/usuario/index/'),(3,'Editar usuario','admin/usuario/editar/'),(4,'Crear recurso','admin/recurso/crear/'),(5,'Listar recursos','admin/recurso/index/'),(6,'Editar recurso','admin/recurso/editar/'),(7,'Crear rol','admin/rol/crear/'),(8,'Listar roles','admin/rol/index/'),(9,'Editar rol','admin/rol/editar/'),(10,'Crear Menú','admin/menu/crear/'),(11,'Listar menús','admin/menu/index/'),(12,'Editar menú','admin/menu/editar/'),(13,'Crear acceso','admin/acceso/crear/'),(14,'Listar accesos','admin/acceso/index/'),(15,'Editar acceso','admin/acceso/editar/'),(16,'Inicio admin','admin/index/index/'),(17,'Cambiar clave','admin/usuario/cambiar_clave/');
 /*!40000 ALTER TABLE `recurso` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,6 +209,7 @@ CREATE TABLE `usuario` (
   `clave` text NOT NULL,
   `estado` char(1) NOT NULL,
   `nombre` text NOT NULL,
+  `bio` text,
   `avatar` varchar(200) DEFAULT NULL,
   `rol_id` int(10) NOT NULL,
   `registrado_at` datetime DEFAULT NULL,
@@ -160,7 +229,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'admin','admin@domain.com','7c4a8d09ca3762af61e59520943dc26494f8941b','1','Administrador',NULL,1,'2011-01-06 21:28:36','2011-01-11 08:14:20','kuS7wWaCqQ79krQEXILeTdxqaFoxNUW8');
+INSERT INTO `usuario` VALUES (1,'admin','maxter2024@gmail.com','7c4a8d09ca3762af61e59520943dc26494f8941b','1','Henry Stivens Adarme','Desarrollador de soluciones web y móviles.',NULL,1,'2011-01-06 21:28:36','2011-01-22 14:42:11','kuS7wWaCqQ79krQEXILeTdxqaFoxNUW8');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -173,4 +242,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-01-11  8:16:30
+-- Dump completed on 2011-01-24  9:29:42
