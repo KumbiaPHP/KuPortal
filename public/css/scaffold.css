@@ -107,8 +107,7 @@ input[type="submit"]{
 	background: #D1D1D1 url(../img/button.png) repeat-x left center;
 	border: 1px solid #FFF;
 	border-bottom: 1px solid #777;
-	border-right: 1px solid #777;
-        //display: inline;
+	border-right: 1px solid #777;        
         cursor: pointer;
         border-radius:3px;
 }

@@ -1,4 +1,6 @@
-
+<div class="actions">
+    <?php echo Html::linkAction("crear/", 'Crear registro') ?>
+</div>
 <h1>Usuario: <span>index</span></h1>
 <?php View::content(); ?>
 <?php if ($results->items) : ?>
@@ -7,7 +9,7 @@
                 <th>Gravatar</th>
                 <th>Nick</th>
                 <th>Nombre</th>
-                <th>Registrado</th>
+                <th>Email</th>
                 <th>Estado</th>
                 <th>Acciones</th>
             </tr></thead>
@@ -17,7 +19,7 @@
                     <td><?php echo Html::gravatar($item->email)?></td>
                     <td><?php echo $item->nick?></td>
                     <td><?php echo $item->nombre?></td>
-                    <td><?php echo $item->registrado_at?></td>
+                    <td><?php echo $item->email?></td>
                     <td><?php echo $item->estado?></td>
                     <td><?php echo Html::linkAction("ver/$item->id/", Html::img('actions/view.png', 'Ver', 'height="32" width="32"')) ?> |
                         <?php echo Html::linkAction("editar/$item->id/", Html::img('actions/edit.png', 'Editar', 'height="32" width="32"')) ?> |
@@ -33,7 +35,3 @@
 <?php else : // Si no hay items?>
     <h2>No hay ningún registro</h2>
 <?php endif ?>
-
-<div class="actions">
-    <?php echo Html::linkAction("crear/", 'Crear registro') ?>
-</div>

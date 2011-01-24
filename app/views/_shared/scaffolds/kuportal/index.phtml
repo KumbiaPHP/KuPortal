@@ -1,4 +1,6 @@
-
+<div class="actions">
+    <?php echo Html::linkAction("crear/", 'Crear registro') ?>
+</div>
 <?php View::content() ?>
 <h1><?php echo ucwords("$model"), ": <span>$action_name</span>" ?></h1>
 <?php if ($results->items) : ?>
@@ -28,6 +30,3 @@
 <?php else : // Si no hay items?>
     <h2>No hay ningún registro</h2>
 <?php endif ?>
-<div class="actions">
-    <?php echo Html::linkAction("crear/", 'Crear registro') ?>
-</div>
