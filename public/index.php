@@ -21,6 +21,8 @@
  */
 //error_reporting(0); // Usar este en producción, no envia errores
 error_reporting(E_ALL ^ E_STRICT);
+//comentar la siguiente linea en producción
+ini_set('display_errors', 'On'); 
 
 /**
  * Indicar si la aplicacion se encuentra en produccion
@@ -48,7 +50,7 @@ define('APP_PATH', dirname(dirname(__FILE__)) . '/app/');
  * CORE_PATH:
  * - Ruta al directorio que contiene el núcleo de Kumbia (por defecto la ruta al directorio core)
  */
-define('CORE_PATH','/var/www/kumbiaphp-core/core/');
+define('CORE_PATH', dirname(dirname(APP_PATH)) . '/core/');
 
 /**
  * Define el PUBLIC_PATH
