@@ -18,7 +18,6 @@ class AdminController extends Controller {
 
     final protected function initialize() {
 
-        if ($this->module_name == 'admin') {
             View::template('admin');
             
             Load::lib('SdAuth');
@@ -38,11 +37,10 @@ class AdminController extends Controller {
             }
 
             if (!$ku_acl->check($recurso, 1)) {
-                Flash::warning("No tienes permiso para acceder al siguiente recurso: <b>$recurso</b>");
+                Flash::warning("No tienes permiso para acceder al siguiente recurso: <strong>$recurso</strong>");
                 View::select(null, '401');
                 return FALSE;
             }            
-        }
     }
 
     final protected function finalize() {
