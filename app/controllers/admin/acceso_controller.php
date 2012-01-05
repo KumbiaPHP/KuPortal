@@ -26,7 +26,7 @@
 //Carga de modelos necesarios
 Load::models('seguridad/rol_recurso','seguridad/rol','seguridad/recurso','seguridad/menu');
 
-class AccesoController extends AppController {
+class AccesoController extends AdminController {
     
     /**
      * Variable para modificar el titulo.

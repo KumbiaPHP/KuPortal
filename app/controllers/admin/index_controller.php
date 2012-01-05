@@ -23,7 +23,7 @@
  * @license http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE version 3.
  * @author Henry Stivens Adarme Muñoz <henry.stivens@gmail.com>
  */
-class IndexController extends AppController {
+class IndexController extends AdminController {
     
     /**
      * Variable para modificar el titulo.

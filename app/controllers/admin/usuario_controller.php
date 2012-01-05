@@ -26,7 +26,7 @@
 //Carga de modelos necesarios
 Load::model('seguridad/usuario');
 
-class UsuarioController extends AppController {
+class UsuarioController extends AdminController {
 
     /**
      * Variable para modificar el titulo.
