@@ -21,6 +21,8 @@
  */
 //error_reporting(0); // Usar este en producción, no envia errores
 error_reporting(E_ALL ^ E_STRICT);
+//comentar la siguiente linea en producción
+ini_set('display_errors', 'On'); 
 
 /**
  * Indicar si la aplicacion se encuentra en produccion
@@ -48,7 +50,7 @@ define('APP_PATH', dirname(dirname(__FILE__)) . '/app/');
  * CORE_PATH:
  * - Ruta al directorio que contiene el núcleo de Kumbia (por defecto la ruta al directorio core)
  */
-define('CORE_PATH','/var/www/kumbiaphp-core/core/');
+define('CORE_PATH', dirname(dirname(APP_PATH)) . '/core/');
 
 /**
  * Define el PUBLIC_PATH
@@ -58,12 +60,12 @@ define('CORE_PATH','/var/www/kumbiaphp-core/core/');
  * - Esta ruta la utiliza Kumbia como base para generar las Urls para acceder de lado de
  *   cliente (con el navegador web) y es relativa al DOCUMENT_ROOT del servidor web
  */
-/*if ($_SERVER['QUERY_STRING']) {
+if ($_SERVER['QUERY_STRING']) {
     define('PUBLIC_PATH', substr(urldecode($_SERVER['REQUEST_URI']), 0, - strlen($_SERVER['QUERY_STRING']) + 6));
 } else {
     define('PUBLIC_PATH', $_SERVER['REQUEST_URI']);
-}*/
-define('PUBLIC_PATH', '/');
+}
+//define('PUBLIC_PATH', '/');
 
 /**
  * Obtiene la url
