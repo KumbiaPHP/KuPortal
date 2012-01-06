@@ -1,8 +1,8 @@
 <?php header('HTTP/1.1 401 Unauthorized') ?>
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8" />
 <title>KuPortal - Administración</title>
 <?php echo Tag::css('jquery/login/screen'); ?>
 <?php echo Html::includeCss();?>
@@ -17,11 +17,11 @@
       <span class="message" style="color: red"><?php echo $error_msj ?></span>
 		<form method="post" id="signin">
         <label for="username">Usuario</label>
-        <input id="txt_login" name="txt_login" value="" title="username" class="required" tabindex="1" type="text">
+        <input id="txt_login" name="txt_login" value="" title="Nombre de usuario" class="required" tabindex="1" type="text" required autofocus>
         </p>
         <p>
           <label for="password">Clave</label>
-          <input id="txt_password" name="txt_password" value="" title="password" class="required" tabindex="2" type="password">
+          <input id="txt_password" name="txt_password" value="" title="Contraseña" class="required" tabindex="2" type="password" required>
         </p>
         <p class="clear"></p>
        <a href="#" class="forgot">Recordar?</a>
